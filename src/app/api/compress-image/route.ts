@@ -1,4 +1,4 @@
-// /app/api/compress-image/route.ts
+export const runtime = "nodejs";
 import sharp from "sharp";
 
 export async function POST(req: Request) {
@@ -6,25 +6,38 @@ export async function POST(req: Request) {
   const file = formData.get("file") as File;
   const targetSizeKB = parseInt(formData.get("targetSizeKB") as string); // in KB
 
+  if (!file || isNaN(targetSizeKB)) {
+    return new Response("Invalid file or target size", { status: 400 });
+  }
+
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  // Start compressing with binary search on quality
-  let minQuality = 10;
-  let maxQuality = 90;
-  let bestOutput: Buffer = buffer;
+  let minQuality = 1;
+  let maxQuality = 100;
+  let bestOutput: Buffer | null = null;
+  let bestSizeDiff = Infinity;
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 10; i++) {
     const quality = Math.floor((minQuality + maxQuality) / 2);
-    const output = await sharp(buffer).jpeg({ quality }).toBuffer();
 
+    const output = await sharp(buffer).jpeg({ quality }).toBuffer();
     const sizeKB = output.length / 1024;
 
-    if (sizeKB <= targetSizeKB) {
+    const diff = Math.abs(sizeKB - targetSizeKB);
+    if (diff < bestSizeDiff) {
+      bestSizeDiff = diff;
       bestOutput = output;
-      minQuality = quality + 1; // try better quality
-    } else {
-      maxQuality = quality - 1; // too big
     }
+
+    if (sizeKB > targetSizeKB) {
+      maxQuality = quality - 1;
+    } else {
+      minQuality = quality + 1;
+    }
+  }
+
+  if (!bestOutput) {
+    return new Response("Compression failed", { status: 500 });
   }
 
   return new Response(bestOutput, {

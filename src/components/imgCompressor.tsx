@@ -32,35 +32,35 @@ export default function ImgCompressor() {
   };
 
   const handleCompress = async () => {
-  if (!file || !targetSizeKB) return;
-  setLoading(true);
+    if (!file || !targetSizeKB) return;
+    setLoading(true);
 
-  try {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("targetSizeKB", targetSizeKB.toString());
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("targetSizeKB", targetSizeKB.toString());
 
-    const response = await fetch("/api/compress-image", {
-      method: "POST",
-      body: formData,
-    });
+      const response = await fetch("/api/compress-image", {
+        method: "POST",
+        body: formData,
+      });
 
-    if (!response.ok) throw new Error("Compression failed");
+      const blob = await response.blob();
 
-    const blob = await response.blob();
-    setCompressedImage(blob);
-    setCompressedSize(blob.size);
-  } catch (error) {
-    console.error("Compression error:", error);
-    alert("Image compression failed. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+      setCompressedImage(blob);
+      setCompressedSize(blob.size);
+    } catch (error) {
+      console.error("Compression error:", error);
+      alert("Image compression failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const compressionRatio = originalSize && compressedSize 
-    ? ((originalSize - compressedSize) / originalSize * 100).toFixed(1)
-    : 0;
+  const compressionRatio =
+    originalSize && compressedSize
+      ? (((originalSize - compressedSize) / originalSize) * 100).toFixed(1)
+      : 0;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center overflow-hidden relative">
@@ -70,7 +70,7 @@ export default function ImgCompressor() {
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/15 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
-      
+
       {/* Grid pattern overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:100px_100px]"></div>
 
@@ -85,7 +85,9 @@ export default function ImgCompressor() {
               Image Compressor
             </span>
           </h2>
-          <p className="text-white/70 text-sm">Optimize your images with precision</p>
+          <p className="text-white/70 text-sm">
+            Optimize your images with precision
+          </p>
         </div>
 
         {/* Upload area */}
@@ -107,7 +109,9 @@ export default function ImgCompressor() {
           ) : (
             <div className="text-center">
               <UploadCloud className="h-12 w-12 text-blue-400 mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
-              <span className="text-white font-medium block mb-2">Drop your image here</span>
+              <span className="text-white font-medium block mb-2">
+                Drop your image here
+              </span>
               <span className="text-white/60 text-sm">or click to browse</span>
             </div>
           )}
@@ -139,21 +143,31 @@ export default function ImgCompressor() {
           <div className="mt-6 bg-white/5 border border-white/10 rounded-xl p-4 space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-white/70 text-sm">File:</span>
-              <span className="text-white text-sm font-medium truncate ml-2">{file.name}</span>
+              <span className="text-white text-sm font-medium truncate ml-2">
+                {file.name}
+              </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-white/70 text-sm">Original size:</span>
-              <span className="text-blue-300 text-sm font-medium">{formatBytes(originalSize)}</span>
+              <span className="text-blue-300 text-sm font-medium">
+                {formatBytes(originalSize)}
+              </span>
             </div>
             {compressedSize > 0 && (
               <>
                 <div className="flex justify-between items-center">
-                  <span className="text-white/70 text-sm">Compressed size:</span>
-                  <span className="text-green-300 text-sm font-medium">{formatBytes(compressedSize)}</span>
+                  <span className="text-white/70 text-sm">
+                    Compressed size:
+                  </span>
+                  <span className="text-green-300 text-sm font-medium">
+                    {formatBytes(compressedSize)}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-white/70 text-sm">Reduction:</span>
-                  <span className="text-purple-300 text-sm font-medium">{compressionRatio}%</span>
+                  <span className="text-purple-300 text-sm font-medium">
+                    {compressionRatio}%
+                  </span>
                 </div>
               </>
             )}
@@ -192,7 +206,10 @@ export default function ImgCompressor() {
                 Compression Complete!
               </p>
               <p className="text-white/80 text-sm">
-                Reduced by <span className="text-purple-300 font-medium">{compressionRatio}%</span>
+                Reduced by{" "}
+                <span className="text-purple-300 font-medium">
+                  {compressionRatio}%
+                </span>
               </p>
             </div>
             <a
