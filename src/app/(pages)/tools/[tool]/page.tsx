@@ -1,5 +1,4 @@
-// Directory: app/tools/[tool]/page.tsx
-
+import React from "react";
 import Base64EncoderDecoder from "@/components/Base64EncoderDecoder";
 import ColorPaletteGenerator from "@/components/ColorPaletteGenerator";
 import HashGenerator from "@/components/HashGenerator";
@@ -12,15 +11,12 @@ import QRCodeGenerator from "@/components/QRCodeGenerator";
 import TextSummarizer from "@/components/TextSummarizer";
 import UnitConverter from "@/components/UnitConverter";
 import UrlShortener from "@/components/UrlShortener";
-import React from "react";
 
+// ✅ REMOVE custom PageProps type
+// ✅ USE Next.js App Router format for `params`
 
-type PageProps<T> = {
-  params: T;
-};
-
-export default function ToolPage({ params }: PageProps<{ tool: string }>) {
-  const tool = params.tool;
+export default function ToolPage({ params }: { params: { tool: string } }) {
+  const { tool } = params;
 
   const renderTool = () => {
     switch (tool) {
@@ -49,9 +45,9 @@ export default function ToolPage({ params }: PageProps<{ tool: string }>) {
       case "base64-encoder-decoder":
         return <Base64EncoderDecoder />;
       default:
-        return <div className="">Tool not found</div>;
+        return <div className="p-6 text-white">Tool not found</div>;
     }
   };
 
-  return <div className="">{renderTool()}</div>;
+  return <div className="p-6">{renderTool()}</div>;
 }
