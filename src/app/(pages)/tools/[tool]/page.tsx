@@ -15,7 +15,11 @@ import UrlShortener from "@/components/UrlShortener";
 import React from "react";
 
 
-export default function ToolPage({ params }: { params: { tool: string } }) {
+type PageProps<T> = {
+  params: T;
+};
+
+export default function ToolPage({ params }: PageProps<{ tool: string }>) {
   const tool = params.tool;
 
   const renderTool = () => {
