@@ -12,8 +12,7 @@ import TextSummarizer from "@/components/TextSummarizer";
 import UnitConverter from "@/components/UnitConverter";
 import UrlShortener from "@/components/UrlShortener";
 
-// ✅ REMOVE custom PageProps type
-// ✅ USE Next.js App Router format for `params`
+
 
 export default function ToolPage({ params }: { params: { tool: string } }) {
   const { tool } = params;
