@@ -1,4 +1,7 @@
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import React from "react";
+
 import Base64EncoderDecoder from "@/components/Base64EncoderDecoder";
 import ColorPaletteGenerator from "@/components/ColorPaletteGenerator";
 import HashGenerator from "@/components/HashGenerator";
@@ -12,9 +15,21 @@ import TextSummarizer from "@/components/TextSummarizer";
 import UnitConverter from "@/components/UnitConverter";
 import UrlShortener from "@/components/UrlShortener";
 
+// ✅ This is the right way to type a dynamic route in App Router
+interface ToolPageProps {
+  params: {
+    tool: string;
+  };
+}
 
+export async function generateMetadata({ params }: ToolPageProps): Promise<Metadata> {
+  return {
+    title: `${params.tool.replace(/-/g, " ")} | Tool`,
+    description: `Use the ${params.tool.replace(/-/g, " ")} tool online.`,
+  };
+}
 
-export default function ToolPage({ params }: { params: { tool: string } }) {
+export default function ToolPage({ params }: ToolPageProps) {
   const { tool } = params;
 
   const renderTool = () => {
@@ -44,9 +59,9 @@ export default function ToolPage({ params }: { params: { tool: string } }) {
       case "base64-encoder-decoder":
         return <Base64EncoderDecoder />;
       default:
-        return <div className="p-6 text-white">Tool not found</div>;
+        notFound(); // use next/navigation to throw 404 page
     }
   };
 
-  return <div className="p-6">{renderTool()}</div>;
+  return <div className="">{renderTool()}</div>;
 }
