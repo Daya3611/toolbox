@@ -32,19 +32,31 @@ export default function ImgCompressor() {
   };
 
   const handleCompress = async () => {
-    if (!file || !targetSizeKB) return;
-    setLoading(true);
+  if (!file || !targetSizeKB) return;
+  setLoading(true);
 
-    // Simulate compression (replace with actual API call)
-    setTimeout(() => {
-      const simulatedCompressedSize = Math.floor(targetSizeKB * 1024 * 0.9);
-      const blob = new Blob(['compressed data'], { type: 'image/jpeg' });
-      Object.defineProperty(blob, 'size', { value: simulatedCompressedSize });
-      setCompressedImage(blob);
-      setCompressedSize(simulatedCompressedSize);
-      setLoading(false);
-    }, 2000);
-  };
+  try {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("targetSizeKB", targetSizeKB.toString());
+
+    const response = await fetch("/api/compress-image", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) throw new Error("Compression failed");
+
+    const blob = await response.blob();
+    setCompressedImage(blob);
+    setCompressedSize(blob.size);
+  } catch (error) {
+    console.error("Compression error:", error);
+    alert("Image compression failed. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const compressionRatio = originalSize && compressedSize 
     ? ((originalSize - compressedSize) / originalSize * 100).toFixed(1)
