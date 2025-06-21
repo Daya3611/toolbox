@@ -21,7 +21,7 @@ function Navbar() {
               </div>
               <div className="absolute -top-1 -right-12">
                 <span className="inline-flex items-center px-2 py-1 text-xs font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full animate-pulse">
-                  .com
+                  Beta
                 </span>
               </div>
             </div>
@@ -29,7 +29,7 @@ function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
+            <a href="/tools" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
               Tools
             </a>
             <a href="#" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">

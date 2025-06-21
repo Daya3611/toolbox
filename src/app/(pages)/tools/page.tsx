@@ -19,7 +19,7 @@ function ToolsPage() {
       id: 1,
       name: "Ai chatbot",
       description:
-        "Meet Champak, your smart and sassy AI chatbot built to answer anything — from tech tips to life advice — with a pinch of personality.",
+        "Meet Champak, your smart and sassy AI chatbot built to answer anything.",
       category: "text",
       icon: "📝",
       popular: true,
@@ -44,7 +44,7 @@ function ToolsPage() {
         "Reduce image file sizes without losing quality. Supports JPEG, PNG, and WebP.",
       category: "image",
       icon: "🖼️",
-      popular: false,
+      popular: true,
       color: "from-green-500 to-teal-500",
       url: "tools/image-compressor",
     },
@@ -66,7 +66,7 @@ function ToolsPage() {
         "Generate secure, customizable passwords with various complexity options.",
       category: "generator",
       icon: "🔐",
-      popular: false,
+      popular: true,
       color: "from-indigo-500 to-purple-500",
       url: "tools/password-generator",
     },
@@ -77,7 +77,7 @@ function ToolsPage() {
         "Create beautiful color palettes for your design projects and websites.",
       category: "image",
       icon: "🎨",
-      popular: false,
+      popular: true,
       color: "from-pink-500 to-rose-500",
       url: "tools/color-palette-generator",
     },
@@ -88,7 +88,7 @@ function ToolsPage() {
         "Format, validate, and beautify JSON data with syntax highlighting.",
       category: "utility",
       icon: "{ }",
-      popular: false,
+      popular: true,
       color: "from-cyan-500 to-blue-500",
       url: "tools/json-formatter",
     },
@@ -99,7 +99,7 @@ function ToolsPage() {
         "Convert between different units of measurement including length, weight, and temperature.",
       category: "converter",
       icon: "⚖️",
-      popular: false,
+      popular: true,
       color: "from-emerald-500 to-green-500",
       url: "tools/unit-converter",
     },
@@ -121,7 +121,7 @@ function ToolsPage() {
         "Create short, memorable URLs with click tracking and analytics.",
       category: "utility",
       icon: "🔗",
-      popular: false,
+      popular: true,
       color: "from-amber-500 to-orange-500",
       url: "tools/url-shortener",
     },
@@ -132,7 +132,7 @@ function ToolsPage() {
         "Generate MD5, SHA-1, SHA-256, and other hash values for text and files.",
       category: "generator",
       icon: "🔒",
-      popular: false,
+      popular: true,
       color: "from-slate-500 to-gray-500",
       url: "tools/hash-generator",
     },
@@ -143,7 +143,7 @@ function ToolsPage() {
         "Encode and decode Base64 strings with support for files and text.",
       category: "converter",
       icon: "🔄",
-      popular: false,
+      popular: true,
       color: "from-teal-500 to-cyan-500",
       url: "tools/base64-encoder-decoder",
     },
@@ -237,7 +237,7 @@ function ToolsPage() {
                 {/* Popular badge */}
                 {tool.popular && (
                   <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    Popular
+                    Beta
                   </div>
                 )}
 
