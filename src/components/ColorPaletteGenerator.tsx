@@ -58,7 +58,7 @@ function ColorPaletteGenerator() {
   };
 
   // Helper functions for color conversion
-  const rgbToHsl = (r, g, b) => {
+  const rgbToHsl = (r: number, g: number, b: number,) => {
     r /= 255; g /= 255; b /= 255;
     const max = Math.max(r, g, b);
     const min = Math.min(r, g, b);
@@ -76,13 +76,13 @@ function ColorPaletteGenerator() {
       }
       h /= 6;
     }
-    return [h * 360, s * 100, l * 100];
+    return [(h ?? 0) * 360, s * 100, l * 100];
   };
 
-  const hslToHex = (h, s, l) => {
+  const hslToHex = (h: number, s: number, l: number) => {
     h /= 360; s /= 100; l /= 100;
     const a = s * Math.min(l, 1 - l);
-    const f = n => {
+    const f = (n: number) => {
       const k = (n + h * 12) % 12;
       const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
       return Math.round(255 * color).toString(16).padStart(2, '0');
@@ -130,7 +130,7 @@ function ColorPaletteGenerator() {
   };
 
   // Copy color to clipboard
-  const copyColor = async (color: string, index: number | React.SetStateAction<null>) => {
+  const copyColor = async (color: string, index: number) => {
     try {
       await navigator.clipboard.writeText(color);
       setCopiedIndex(index);
@@ -141,7 +141,7 @@ function ColorPaletteGenerator() {
   };
 
   // Get text color based on background
-  const getTextColor = (bgColor) => {
+  const getTextColor = (bgColor: string) => {
     const hex = bgColor.replace('#', '');
     const r = parseInt(hex.substr(0, 2), 16);
     const g = parseInt(hex.substr(2, 2), 16);
