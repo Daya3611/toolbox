@@ -17,14 +17,14 @@ function ToolsPage() {
   const tools = [
     {
       id: 1,
-      name: "Text Summarizer",
+      name: "Ai chatbot",
       description:
-        "Quickly summarize long articles and documents with AI-powered text analysis.",
+        "Meet Champak, your smart and sassy AI chatbot built to answer anything — from tech tips to life advice — with a pinch of personality.",
       category: "text",
       icon: "📝",
       popular: true,
       color: "from-blue-500 to-cyan-500",
-      url: "tools/text-summarizer",
+      url: "tools/champak-ai",
     },
     {
       id: 2,

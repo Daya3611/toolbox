@@ -4,7 +4,7 @@ import sharp from "sharp";
 export async function POST(req: Request) {
   const formData = await req.formData();
   const file = formData.get("file") as File;
-  const targetSizeKB = parseInt(formData.get("targetSizeKB") as string); // in KB
+  const targetSizeKB = parseInt(formData.get("targetSizeKB") as string);
 
   if (!file || isNaN(targetSizeKB)) {
     return new Response("Invalid file or target size", { status: 400 });

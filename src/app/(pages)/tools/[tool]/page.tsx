@@ -10,9 +10,9 @@ import MarkdownEditor from "@/components/MarkdownEditor";
 import PasswordGenerator from "@/components/PasswordGenerator";
 import PdfConverter from "@/components/PdfConverter";
 import QRCodeGenerator from "@/components/QRCodeGenerator";
-import TextSummarizer from "@/components/TextSummarizer";
 import UnitConverter from "@/components/UnitConverter";
 import UrlShortener from "@/components/UrlShortener";
+import ChatBot from "@/components/ChatBot";
 
 export default function ToolPage({ params }: { params: { tool: string } }) {
   const { tool } = params;
@@ -21,8 +21,8 @@ export default function ToolPage({ params }: { params: { tool: string } }) {
     switch (tool) {
       case "image-compressor":
         return <ImgCompressor />;
-      case "text-summarizer":
-        return <TextSummarizer />;
+      case "champak-ai":
+        return <ChatBot />;
       case "qr-code-generator":
         return <QRCodeGenerator />;
       case "pdf-converter":
