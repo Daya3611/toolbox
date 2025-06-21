@@ -37,7 +37,10 @@ export async function POST(req: NextRequest) {
       "developer name",
     ];
 
-    const asgarQnA = ["who is asgar"];
+    const asgarQnA = [
+      "who is asgar",
+      
+    ];
 
     const isNameQuestion = nameQuestions.some((q) => normalized.includes(q));
     const isDevQuestion = devQuestions.some((q) => normalized.includes(q));
