@@ -8,10 +8,11 @@ function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+         
           <div className="flex items-center space-x-2">
             <div className="relative">
-              <div className="text-3xl font-black tracking-tight">
+              <a href="/">
+                <div className="text-3xl font-black tracking-tight">
                 <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                   Tool
                 </span>
@@ -19,6 +20,7 @@ function Navbar() {
                   Box
                 </span>
               </div>
+              </a>
               <div className="absolute -top-1 -right-12">
                 <span className="inline-flex items-center px-2 py-1 text-xs font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full animate-pulse">
                   Beta
@@ -27,7 +29,7 @@ function Navbar() {
             </div>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop  */}
           <div className="hidden md:flex items-center space-x-8">
             <a href="/tools" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
               Tools
@@ -54,7 +56,7 @@ function Navbar() {
             </button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile  */}
           <div className="md:hidden">
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -72,7 +74,7 @@ function Navbar() {
         {/* Mobile Navigation */}
         <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
           <div className="pt-4 pb-2 space-y-2">
-            <a href="#" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
+            <a href="/tools" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
               Tools
             </a>
             <a href="#" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">

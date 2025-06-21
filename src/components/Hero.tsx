@@ -23,9 +23,11 @@ function Hero() {
         
         {/* Main heading with gradient text */}
         <h1 className="text-7xl md:text-8xl lg:text-9xl font-black mb-8 tracking-tight">
-          <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent drop-shadow-2xl">
+          <strong>
+            <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent drop-shadow-2xl">
             Tool
           </span>
+          </strong>
           <span className="bg-gradient-to-r from-purple-300 via-blue-300 to-cyan-300 bg-clip-text text-transparent drop-shadow-2xl">
             Box
           </span>
