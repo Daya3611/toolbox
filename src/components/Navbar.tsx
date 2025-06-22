@@ -51,7 +51,7 @@ function Navbar() {
               Sign In
             </button> */}
             <button className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25" onClick={() => window.location.href="/tools"}>
-              <span className="relative z-10">Get Started</span>
+              <span className="relative z-10">Explore Tools</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
             </button>
           </div>
