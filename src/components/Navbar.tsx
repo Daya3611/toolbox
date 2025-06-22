@@ -57,7 +57,7 @@ function Navbar() {
           </div>
 
           {/* Mobile  */}
-          {/* <div className="md:hidden">
+          <div className="md:hidden">
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white/90 hover:text-white transition-colors duration-200 p-2 hover:bg-white/10 rounded-lg"
@@ -68,11 +68,11 @@ function Navbar() {
                 <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
               </div>
             </button>
-          </div> */}
+          </div>
         </div>
 
         {/* Mobile  */}
-        {/* <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+        <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
           <div className="pt-4 pb-2 space-y-2">
             <a href="/tools" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
               Tools
@@ -87,15 +87,15 @@ function Navbar() {
               About
             </a>
             <div className="pt-4 border-t border-white/20 space-y-2">
-              <button className="block w-full text-left text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
-                Sign In
+              <button className="block w-full text-left text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg" onClick={() => window.location.href="/bug-report"}>
+                Report a Bug or Eroor
               </button>
-              <button className="block w-full text-left bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-4 py-3 rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300">
+              {/* <button className="block w-full text-left bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-4 py-3 rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300">
                 Get Started
-              </button>
+              </button> */}
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </nav>
   )
