@@ -6,12 +6,12 @@ function ToolsPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const categories = [
-    { id: "all", name: "All Tools", count: 24 },
-    { id: "text", name: "Text & Writing", count: 8 },
-    { id: "image", name: "Image & Design", count: 6 },
-    { id: "converter", name: "Converters", count: 5 },
-    { id: "generator", name: "Generators", count: 3 },
-    { id: "utility", name: "Utilities", count: 2 },
+    { id: "all", name: "All Tools", count: 8 },
+    { id: "text", name: "Text & Writing", count: 1 },
+    { id: "image", name: "Image & Design", count: 2 },
+    { id: "converter", name: "Converters", count: 2 },
+    { id: "generator", name: "Generators", count: 2 },
+    { id: "utility", name: "Utilities", count: 1 },
   ];
 
   const tools = [
@@ -81,39 +81,39 @@ function ToolsPage() {
       color: "from-pink-500 to-rose-500",
       url: "tools/color-palette-generator",
     },
-    {
-      id: 7,
-      name: "JSON Formatter",
-      description:
-        "Format, validate, and beautify JSON data with syntax highlighting.",
-      category: "utility",
-      icon: "{ }",
-      popular: true,
-      color: "from-cyan-500 to-blue-500",
-      url: "tools/json-formatter",
-    },
-    {
-      id: 8,
-      name: "Unit Converter",
-      description:
-        "Convert between different units of measurement including length, weight, and temperature.",
-      category: "converter",
-      icon: "⚖️",
-      popular: true,
-      color: "from-emerald-500 to-green-500",
-      url: "tools/unit-converter",
-    },
-    {
-      id: 9,
-      name: "Markdown Editor",
-      description:
-        "Write and preview Markdown with live rendering and export options.",
-      category: "text",
-      icon: "✍️",
-      popular: true,
-      color: "from-violet-500 to-purple-500",
-      url: "tools/markdown-editor",
-    },
+    // {
+    //   id: 7,
+    //   name: "JSON Formatter",
+    //   description:
+    //     "Format, validate, and beautify JSON data with syntax highlighting.",
+    //   category: "utility",
+    //   icon: "{ }",
+    //   popular: true,
+    //   color: "from-cyan-500 to-blue-500",
+    //   url: "tools/json-formatter",
+    // },
+    // {
+    //   id: 8,
+    //   name: "Unit Converter",
+    //   description:
+    //     "Convert between different units of measurement including length, weight, and temperature.",
+    //   category: "converter",
+    //   icon: "⚖️",
+    //   popular: true,
+    //   color: "from-emerald-500 to-green-500",
+    //   url: "tools/unit-converter",
+    // },
+    // {
+    //   id: 9,
+    //   name: "Markdown Editor",
+    //   description:
+    //     "Write and preview Markdown with live rendering and export options.",
+    //   category: "text",
+    //   icon: "✍️",
+    //   popular: true,
+    //   color: "from-violet-500 to-purple-500",
+    //   url: "tools/markdown-editor",
+    // },
     {
       id: 10,
       name: "URL Shortener",
@@ -125,17 +125,17 @@ function ToolsPage() {
       color: "from-amber-500 to-orange-500",
       url: "tools/url-shortener",
     },
-    {
-      id: 11,
-      name: "Hash Generator",
-      description:
-        "Generate MD5, SHA-1, SHA-256, and other hash values for text and files.",
-      category: "generator",
-      icon: "🔒",
-      popular: true,
-      color: "from-slate-500 to-gray-500",
-      url: "tools/hash-generator",
-    },
+    // {
+    //   id: 11,
+    //   name: "Hash Generator",
+    //   description:
+    //     "Generate MD5, SHA-1, SHA-256, and other hash values for text and files.",
+    //   category: "generator",
+    //   icon: "🔒",
+    //   popular: true,
+    //   color: "from-slate-500 to-gray-500",
+    //   url: "tools/hash-generator",
+    // },
     {
       id: 12,
       name: "Base64 Encoder/Decoder",
@@ -175,7 +175,7 @@ function ToolsPage() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 mb-6 text-white/90 text-sm font-medium">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              24 Tools Available - Note: All Tools in under Beta Version
+              8 Tools Available
             </div>
 
             <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tight">

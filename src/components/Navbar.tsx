@@ -30,7 +30,7 @@ function Navbar() {
           </div>
 
           {/* Desktop  */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* <div className="hidden md:flex items-center space-x-8">
             <a href="/tools" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
               Tools
             </a>
@@ -43,21 +43,21 @@ function Navbar() {
             <a href="#" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
               About
             </a>
-          </div>
+          </div> */}
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-white/90 hover:text-white transition-colors duration-200 font-medium px-4 py-2 hover:bg-white/10 rounded-lg">
+            {/* <button className="text-white/90 hover:text-white transition-colors duration-200 font-medium px-4 py-2 hover:bg-white/10 rounded-lg">
               Sign In
-            </button>
-            <button className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25">
+            </button> */}
+            <button className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25" onClick={() => window.location.href="/tools"}>
               <span className="relative z-10">Get Started</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
             </button>
           </div>
 
           {/* Mobile  */}
-          <div className="md:hidden">
+          {/* <div className="md:hidden">
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white/90 hover:text-white transition-colors duration-200 p-2 hover:bg-white/10 rounded-lg"
@@ -68,11 +68,11 @@ function Navbar() {
                 <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
               </div>
             </button>
-          </div>
+          </div> */}
         </div>
 
-        {/* Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+        {/* Mobile  */}
+        {/* <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
           <div className="pt-4 pb-2 space-y-2">
             <a href="/tools" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
               Tools
@@ -95,7 +95,7 @@ function Navbar() {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   )
