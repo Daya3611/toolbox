@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     const isAsgarQnA = asgarQnA.some((q) => normalized.includes(q));
 
     if (isNameQuestion) {
-      return NextResponse.json({ reply: "My name is Champak. Chappal walla" });
+      return NextResponse.json({ reply: "My name is Champak — a personalized AI chatbot powered by the Champak AI Engine and Cohere AI for handling complex tasks." });
     }
 
     if (isAsgarQnA) {

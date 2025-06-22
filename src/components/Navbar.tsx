@@ -50,8 +50,8 @@ function Navbar() {
             {/* <button className="text-white/90 hover:text-white transition-colors duration-200 font-medium px-4 py-2 hover:bg-white/10 rounded-lg">
               Sign In
             </button> */}
-            <button className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25" onClick={() => window.location.href="/tools"}>
-              <span className="relative z-10">Explore Tools</span>
+            <button className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25" onClick={() => window.location.href="/bug-report"}>
+              <span className="relative z-10">Report A Bug</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
             </button>
           </div>
@@ -74,7 +74,7 @@ function Navbar() {
         {/* Mobile  */}
         <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
           <div className="pt-4 pb-2 space-y-2">
-            <a href="/tools" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
+            {/* <a href="/tools" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
               Tools
             </a>
             <a href="#" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
@@ -85,7 +85,7 @@ function Navbar() {
             </a>
             <a href="#" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
               About
-            </a>
+            </a> */}
             <div className="pt-4 border-t border-white/20 space-y-2">
               <button className="block w-full text-left text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg" onClick={() => window.location.href="/bug-report"}>
                 Report a Bug or Eroor
