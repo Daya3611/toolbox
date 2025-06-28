@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Bot, User, Sparkles, MessageCircle, Loader2 } from "lucide-react";
+import { Send, Bot, User, Sparkles, MessageCircle, Loader2, Volume2 } from "lucide-react";
+import { getElevenLabsTTS } from "@/utils/elevenTTS";
 
 export default function ChatBot() {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>([]);
@@ -15,12 +16,11 @@ export default function ChatBot() {
 
   useEffect(scrollToBottom, [messages]);
 
-  // Auto-resize textarea
   const adjustTextareaHeight = () => {
     const textarea = textareaRef.current;
     if (textarea) {
-      textarea.style.height = 'auto';
-      textarea.style.height = Math.min(textarea.scrollHeight, 128) + 'px';
+      textarea.style.height = "auto";
+      textarea.style.height = Math.min(textarea.scrollHeight, 128) + "px";
     }
   };
 
@@ -42,10 +42,19 @@ export default function ChatBot() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: input }),
       });
-      const data = await response.json();
 
-      const aiMessage = { sender: "ai", text: data.reply || "No response." };
+      const data = await response.json();
+      const aiText = data.reply || "No response.";
+      const aiMessage = { sender: "ai", text: aiText };
       setMessages((prev) => [...prev, aiMessage]);
+
+      // 🔊 TTS Playback
+      const audioBlob = await getElevenLabsTTS(aiText);
+      if (audioBlob) {
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+      }
     } catch (err) {
       console.error("Chat error:", err);
       setMessages((prev) => [
@@ -65,18 +74,16 @@ export default function ChatBot() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center relative p-4 ">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden ">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center relative p-4">
+      <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-80 md:h-80 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-64 md:h-64 bg-cyan-500/15 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] md:bg-[size:100px_100px] "></div>
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:80px_80px] md:bg-[size:100px_100px]"></div>
 
-      <div className="relative z-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 md:p-6 max-w-4xl w-full h-[85vh] md:h-[700px] hover:bg-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/25 flex flex-col shadow-xl mt-[100px]">
+      <div className="relative z-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 md:p-6 max-w-4xl w-full h-[85vh] md:h-[700px] flex flex-col shadow-xl mt-[100px]">
         {/* Header */}
         <div className="text-center mb-4 md:mb-6 flex-shrink-0">
           <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl md:rounded-2xl mx-auto mb-3 md:mb-4 flex items-center justify-center shadow-lg">
@@ -84,23 +91,16 @@ export default function ChatBot() {
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">
             <span className="bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
-              Champak AI 
-              
-                <span className="inline-flex text-center ml-2 items-center px-2 py-1 text-xs font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full animate-pulse">
-                  Beta
-                </span>
-              
+              Champak AI
+              <span className="inline-flex text-center ml-2 items-center px-2 py-1 text-xs font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full animate-pulse">
+                Beta
+              </span>
             </span>
-           
-
-            
           </h2>
-          <p className="text-white/70 text-xs md:text-sm">
-            Powered by Champak AI Engine
-          </p>
+          <p className="text-white/70 text-xs md:text-sm">Powered by Champak AI Engine</p>
         </div>
 
-        {/* Messages Container */}
+        {/* Messages */}
         <div className="flex-1 bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-3 md:p-4 overflow-y-auto mb-4 md:mb-6 space-y-3 md:space-y-4 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent min-h-0">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
@@ -140,11 +140,13 @@ export default function ChatBot() {
                         : "bg-white/10 border border-white/20 text-white/90"
                     } backdrop-blur-sm`}
                   >
-                    <p className="text-sm md:text-base leading-relaxed whitespace-pre-wrap break-words">{msg.text}</p>
+                    <p className="text-sm md:text-base leading-relaxed whitespace-pre-wrap break-words">
+                      {msg.text}
+                    </p>
                   </div>
                 </div>
               ))}
-              
+
               {loading && (
                 <div className="flex items-start gap-2 md:gap-3 animate-in slide-in-from-bottom-2 duration-300">
                   <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 shadow-md">
@@ -163,7 +165,7 @@ export default function ChatBot() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Section */}
+        {/* Input */}
         <div className="flex-shrink-0">
           <div className="flex gap-2 md:gap-3 items-end">
             <div className="flex-1 relative">
@@ -176,8 +178,8 @@ export default function ChatBot() {
                 onKeyDown={handleKeyPress}
                 rows={1}
                 style={{
-                  minHeight: '44px',
-                  maxHeight: '128px'
+                  minHeight: "44px",
+                  maxHeight: "128px",
                 }}
                 disabled={loading}
               />
@@ -203,7 +205,6 @@ export default function ChatBot() {
             </button>
           </div>
 
-          {/* Footer hint */}
           <div className="mt-2 md:mt-3 text-center">
             <p className="text-white/40 text-xs">
               Press Enter to send • Shift + Enter for new line

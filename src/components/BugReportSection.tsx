@@ -438,6 +438,9 @@ Sent from ToolBox Bug Reporter`
                   onChange={handleInputChange}
                   placeholder="Auto-detect or enter manually..."
                   className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent"
+                  disabled
+                  
+                  required
                 />
                 <button
                   type="button"
