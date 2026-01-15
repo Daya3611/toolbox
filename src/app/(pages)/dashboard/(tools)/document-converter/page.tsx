@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, RefreshCw, Terminal } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { LoaderFive } from "@/components/ui/loader";
 
 const OUTPUT_FORMATS = [
     "pdf",
@@ -40,6 +41,8 @@ export default function UniversalConverter() {
 
         setLoading(true);
 
+        const sleep = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
+
         try {
             const formData = new FormData();
             formData.append("file", file);
@@ -51,6 +54,9 @@ export default function UniversalConverter() {
             });
 
             const blob = await res.blob();
+
+            await sleep(3000);
+
             const url = window.URL.createObjectURL(blob);
 
             const link = document.createElement("a");
@@ -65,6 +71,7 @@ export default function UniversalConverter() {
             setLoading(false);
         }
     };
+
 
     return (
         <div className="w-full max-w-4xl mx-auto space-y-6">
@@ -114,8 +121,7 @@ export default function UniversalConverter() {
             >
                 {loading ? (
                     <span className="flex items-center gap-2">
-                        <RefreshCw className="h-4 w-4 animate-spin" />
-                        Converting
+                        <LoaderFive text="Converting....." />
                     </span>
                 ) : (
                     "Convert & Download"
