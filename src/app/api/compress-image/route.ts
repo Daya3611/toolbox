@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     return new Response("Compression failed", { status: 500 });
   }
 
-  return new Response(bestOutput, {
+  return new Response(new Uint8Array(bestOutput), {
     headers: { "Content-Type": "image/jpeg" },
   });
 }

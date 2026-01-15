@@ -1,104 +1,71 @@
-"use client"
-import React, { useState } from 'react'
+"use client";
+import React, { useState } from "react";
+import { HoveredLink, Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
+import { cn } from "@/lib/utils";
 
-function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+export function NavbarNew() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-         
-          <div className="flex items-center space-x-2">
-            <div className="relative">
-              <a href="/">
-                <div className="text-3xl font-black tracking-tight">
-                <span className="bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  Tool
-                </span>
-                <span className="bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent">
-                  Box
-                </span>
-              </div>
-              </a>
-              <div className="absolute -top-1 -right-12">
-                <span className="inline-flex items-center px-2 py-1 text-xs font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full animate-pulse">
-                  Beta
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop  */}
-          {/* <div className="hidden md:flex items-center space-x-8">
-            <a href="/tools" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
-              Tools
-            </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
-              Features
-            </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
-              Pricing
-            </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-2 rounded-lg">
-              About
-            </a>
-          </div> */}
-
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center space-x-4">
-            {/* <button className="text-white/90 hover:text-white transition-colors duration-200 font-medium px-4 py-2 hover:bg-white/10 rounded-lg">
-              Sign In
-            </button> */}
-            <button className="group relative px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25" onClick={() => window.location.href="/bug-report"}>
-              <span className="relative z-10">Report A Bug</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
-            </button>
-          </div>
-
-          {/* Mobile  */}
-          <div className="md:hidden">
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white/90 hover:text-white transition-colors duration-200 p-2 hover:bg-white/10 rounded-lg"
-            >
-              <div className="w-6 h-6 flex flex-col justify-center items-center">
-                <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'}`}></span>
-                <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-                <span className={`bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
-              </div>
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile  */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-          <div className="pt-4 pb-2 space-y-2">
-            {/* <a href="/tools" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
-              Tools
-            </a>
-            <a href="#" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
-              Features
-            </a>
-            <a href="#" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
-              Pricing
-            </a>
-            <a href="#" className="block text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg">
-              About
-            </a> */}
-            <div className="pt-4 border-t border-white/20 space-y-2">
-              <button className="block w-full text-left text-white/90 hover:text-white transition-colors duration-200 font-medium hover:bg-white/10 px-4 py-3 rounded-lg" onClick={() => window.location.href="/bug-report"}>
-                Report a Bug or Eroor
-              </button>
-              {/* <button className="block w-full text-left bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-4 py-3 rounded-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300">
-                Get Started
-              </button> */}
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-  )
+    <div className="relative w-full flex items-center justify-center">
+      <Navbar className="top-2" />
+      {/* <p className="text-black dark:text-white">
+        The Navbar will show on top of the page
+      </p> */}
+    </div>
+  );
 }
 
-export default Navbar
+function Navbar({ className }: { className?: string }) {
+  const [active, setActive] = useState<string | null>(null);
+  return (
+    <div
+      className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
+    >
+      <Menu setActive={setActive}>
+        <MenuItem setActive={setActive} active={active} item="Services">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/web-dev">Web Development</HoveredLink>
+            <HoveredLink href="/interface-design">Interface Design</HoveredLink>
+            <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
+            <HoveredLink href="/branding">Branding</HoveredLink>
+          </div>
+        </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="Products">
+          <div className="  text-sm grid grid-cols-2 gap-10 p-4">
+            <ProductItem
+              title="Algochurn"
+              href="https://algochurn.com"
+              src="https://assets.aceternity.com/demos/algochurn.webp"
+              description="Prepare for tech interviews like never before."
+            />
+            <ProductItem
+              title="Tailwind Master Kit"
+              href="https://tailwindmasterkit.com"
+              src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
+              description="Production ready Tailwind css components for your next project"
+            />
+            <ProductItem
+              title="Moonbeam"
+              href="https://gomoonbeam.com"
+              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
+              description="Never write from scratch again. Go from idea to blog in minutes."
+            />
+            <ProductItem
+              title="Rogue"
+              href="https://userogue.com"
+              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
+              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+            />
+          </div>
+        </MenuItem>
+        <MenuItem setActive={setActive} active={active} item="Pricing">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink href="/hobby">Hobby</HoveredLink>
+            <HoveredLink href="/individual">Individual</HoveredLink>
+            <HoveredLink href="/team">Team</HoveredLink>
+            <HoveredLink href="/enterprise">Enterprise</HoveredLink>
+          </div>
+        </MenuItem>
+      </Menu>
+    </div>
+  );
+}
