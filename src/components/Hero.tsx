@@ -3,12 +3,13 @@ import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import AuthButton from "./AuthButton";
+import { BackgroundBeams } from "./ui/background-beams";
 
 export default function Hero() {
   return (
     <div className="relative mx-auto w-full max-w-7xl min-h-screen px-6">
       <DottedGlowBackground
-        className="pointer-events-none mask-radial-to-90% mask-radial-at-center"
+        className="pointer-events-none mask-radial-to-90% mask-radial-at-center "
         opacity={1}
         gap={10}
         radius={1.6}
@@ -21,6 +22,7 @@ export default function Hero() {
         speedMax={1.6}
         speedScale={1}
       />
+      <BackgroundBeams />
 
       <div className="relative z-10 flex min-h-screen items-center">
         <div className="flex w-full flex-col items-start justify-between gap-8 md:flex-row md:items-center">
@@ -29,7 +31,7 @@ export default function Hero() {
           <div className="max-w-xl">
             <h2 className="text-3xl font-normal tracking-tight text-neutral-400 sm:text-4xl md:text-5xl">
               Ready to use{" "}
-              <span className="font-bold text-white">ToolBox Pro</span>?
+              <strong className="font-bold text-white">ToolBox Pro</strong>?
             </h2>
 
             <p className="mt-4 text-base leading-relaxed text-neutral-400">
